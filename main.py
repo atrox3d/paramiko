@@ -1,6 +1,16 @@
 import paramiko
 import time
 
+
+def getsshoutput(remote: paramiko.Channel):
+    print('waiting for output...')
+    time.sleep(5)
+
+    print('receiving output...')
+    output = remote.recv(1000)
+    print(output.decode('utf-8'))
+
+
 sshclient = paramiko.SSHClient()
 sshclient.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
@@ -24,32 +34,18 @@ try:
     remote = sshclient.invoke_shell()
     print(f'shell invoked: {remote}')
 
-    print('waiting for output...')
-    time.sleep(5)
-
-    print('receiving output...')
-    output = remote.recv(1000)
-    print(output.decode('utf-8'))
+    getsshoutput(remote)
 
     print('sending ?\\n...')
     remote.send('?\n')
 
-    print('waiting for output...')
-    time.sleep(5)
-
-    print('receiving output...')
-    output = remote.recv(1000)
-    print(output.decode('utf-8'))
+    getsshoutput(remote)
 
     print('sending exit\\n...')
     remote.send('exit\n')
 
-    print('waiting for output...')
-    time.sleep(5)
+    getsshoutput(remote)
 
-    print('receiving output...')
-    output = remote.recv(1000)
-    print(output.decode('utf-8'))
 
 except Exception as e:
     print(e)
@@ -59,7 +55,6 @@ except Exception as e:
 #
 # if sshsession.active:
 #     print('active')
-
 
 
 # stdin, stdout, stderr = sshclient.exec_command('\n\n\n\nhelp')
