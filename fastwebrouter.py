@@ -12,7 +12,12 @@ class FastwebRouter:
 
     def __del__(self):
         if self.remote:
+            print('closing remote...')
             self.remote.close()
+
+        if self.client:
+            print('closing client...')
+            self.client.close()
 
     def __getsshoutput(self):
         try:
@@ -56,3 +61,14 @@ class FastwebRouter:
             self.__getsshoutput()
         except Exception as e:
             print(e)
+
+
+if __name__ == '__main__':
+    router = FastwebRouter(
+                '192.168.1.254',
+                'admin',
+                'p0rc0d10.router.fastweb'
+            )
+
+    router.connect()
+    router.sendcommand('?')
