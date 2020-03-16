@@ -7,8 +7,10 @@ def getsshoutput(remote: paramiko.Channel):
     time.sleep(5)
 
     print('receiving output...')
+    print('-' * 80)
     output = remote.recv(1000)
     print(output.decode('utf-8'))
+    print('-' * 80)
 
 
 sshclient = paramiko.SSHClient()
@@ -49,16 +51,6 @@ try:
 
 except Exception as e:
     print(e)
-
-# sshsession = sshclient.get_transport().open_session()
-# print(sshsession)
-#
-# if sshsession.active:
-#     print('active')
-
-
-# stdin, stdout, stderr = sshclient.exec_command('\n\n\n\nhelp')
-# print(stdout.readlines())
 
 print(f'disconnecting from {hostname}...')
 sshclient.close()
