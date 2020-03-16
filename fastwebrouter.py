@@ -10,11 +10,9 @@ class FastwebRouter:
         self.client: paramiko.SSHClient = paramiko.SSHClient()
         self.remote: paramiko.Channel = None
 
-
     def __del__(self):
         if self.remote:
             self.remote.close()
-
 
     def __getsshoutput(self):
         try:
@@ -51,11 +49,10 @@ class FastwebRouter:
         except Exception as e:
             print(e)
 
-
     def sendcommand(self, command):
         try:
             print(f'sending {command}\\n...')
-            self.remote.send(f'{}command\n')
+            self.remote.send(f'{command}\n')
             self.__getsshoutput()
         except Exception as e:
             print(e)
