@@ -1,6 +1,8 @@
 import paramiko
 import time
 
+import private.credentials as credentials
+
 
 class FastwebRouter:
     def __init__(self, hostname, username, password):               # constructor
@@ -65,9 +67,9 @@ class FastwebRouter:
 
 if __name__ == '__main__':
     router = FastwebRouter(
-                '***REMOVED***',
-                '***REMOVED***',
-                '***REMOVED***'
+                credentials.HOSTNAME,
+                credentials.USERNAME,
+                credentials.PASSWORD
             )
 
     router.connect()

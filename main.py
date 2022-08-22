@@ -1,6 +1,7 @@
 import paramiko
 import time
 
+import private.credentials as credentials
 
 def getsshoutput(remote: paramiko.Channel):
     print('waiting for output...')
@@ -16,9 +17,9 @@ def getsshoutput(remote: paramiko.Channel):
 sshclient = paramiko.SSHClient()
 sshclient.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
-hostname = '***REMOVED***'
-username = '***REMOVED***'
-password = '***REMOVED***'
+hostname = credentials.HOSTNAME
+username = credentials.USERNAME
+password = credentials.PASSWORD
 banner_timeout = 10
 
 print(f'connecting to {hostname} as {username}/{password}...')
