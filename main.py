@@ -39,12 +39,12 @@ try:
     getsshoutput(remote)
 
     print('sending ?\\n...')
-    remote.send('?\n')
+    remote.send('?\n'.encode())
 
     getsshoutput(remote)
 
     print('sending exit\\n...')
-    remote.send('exit\n')
+    remote.send('exit\n'.encode())
 
     getsshoutput(remote)
 

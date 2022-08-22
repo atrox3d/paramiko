@@ -3,14 +3,14 @@ import time
 
 
 class FastwebRouter:
-    def __init__(self, hostname, username, password):
+    def __init__(self, hostname, username, password):               # constructor
         self.hostname = hostname
         self.username = username
         self.password = password
         self.client: paramiko.SSHClient = paramiko.SSHClient()
         self.remote: paramiko.Channel = None
 
-    def __del__(self):
+    def __del__(self):                                              # destructor
         if self.remote:
             print('closing remote...')
             self.remote.close()
@@ -19,7 +19,7 @@ class FastwebRouter:
             print('closing client...')
             self.client.close()
 
-    def __getsshoutput(self):
+    def __getsshoutput(self):                                       # private method
         try:
             print('waiting for output...')
             time.sleep(5)
@@ -57,7 +57,7 @@ class FastwebRouter:
     def sendcommand(self, command):
         try:
             print(f'sending {command}\\n...')
-            self.remote.send(f'{command}\n')
+            self.remote.send(f'{command}\n'.encode())               # add encode
             self.__getsshoutput()
         except Exception as e:
             print(e)
