@@ -1,6 +1,10 @@
 import paramiko
 import time
 
+<<<<<<< HEAD
+=======
+import private.credentials as credentials
+>>>>>>> 83f454f158756a17b7004cb8de5fe437635088cf
 
 def getsshoutput(remote: paramiko.Channel):
     print('waiting for output...')
@@ -16,9 +20,15 @@ def getsshoutput(remote: paramiko.Channel):
 sshclient = paramiko.SSHClient()
 sshclient.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
+<<<<<<< HEAD
 hostname = '192.168.1.254'
 username = 'admin'
 password = 'p0rc0d10.router.fastweb'
+=======
+hostname = credentials.HOSTNAME
+username = credentials.USERNAME
+password = credentials.PASSWORD
+>>>>>>> 83f454f158756a17b7004cb8de5fe437635088cf
 banner_timeout = 10
 
 print(f'connecting to {hostname} as {username}/{password}...')
@@ -39,12 +49,20 @@ try:
     getsshoutput(remote)
 
     print('sending ?\\n...')
+<<<<<<< HEAD
     remote.send('?\n')
+=======
+    remote.send('?\n'.encode())
+>>>>>>> 83f454f158756a17b7004cb8de5fe437635088cf
 
     getsshoutput(remote)
 
     print('sending exit\\n...')
+<<<<<<< HEAD
     remote.send('exit\n')
+=======
+    remote.send('exit\n'.encode())
+>>>>>>> 83f454f158756a17b7004cb8de5fe437635088cf
 
     getsshoutput(remote)
 
