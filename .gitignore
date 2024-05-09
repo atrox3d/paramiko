@@ -1,16 +1,7 @@
-<<<<<<< HEAD
 __pycache__/
 venv/
 *.egg-info/
 .idea/
-=======
-<<<<<<< HEAD
-/venv/
-/.idea/
-
-=======
 /venv/
 /.idea/
 /private/
->>>>>>> 83f454f158756a17b7004cb8de5fe437635088cf
->>>>>>> ac53bf43e596d50a941c745f8175dee7e2759dc4
